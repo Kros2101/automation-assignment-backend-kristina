@@ -193,15 +193,18 @@ function changeClientInfo(cy){
                 'X-User-Auth': JSON.stringify(Cypress.env().loginToken),
                 'Content-Type': 'application/json'
             },
+            body: {
+                "id":1,
+                "name":"Kristina1",
+                "email":"k1@email.com",
+                "telephone":"070000000011"
+            }
  
         }).then((request =>{
-            const responsAsString = JSON.stringify(response)
-            const payload = {
-                "name": "X",
-                "email": "X",
-                "telephone": "07077777771"
-            }
-          
+            expect(response.status).to.eq(200)
+            //cy.log(JSON.stringify(respons.body))
+            const responseAsString = JSON.stringify(response)
+            cy.log(responseAsString)           
         }))
     }))
 }   
